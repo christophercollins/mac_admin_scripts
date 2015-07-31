@@ -114,17 +114,17 @@ def readPlist(filepath):
 
 		
 def writePlist(dataObject, filepath):
-		'''
-		Write 'rootObject' as a plist to filepath.
-		'''
-		plistData, error = NSPropertyListSerialization.dataFromPropertyList_format_errorDescription_(dataObject, NSPropertyListXMLFormat_v1_0, None)
-		if error:
-			raise NSPropertyListSerializationException(error)
-		else:
-			if plistData.writeToFile_atomically_(filepath, True):
-				return
-			else:
-				raise Exception("Failed to write plist data to %s" % filepath)
+    '''
+    Write 'rootObject' as a plist to filepath.
+    '''
+    plistData, error = NSPropertyListSerialization.dataFromPropertyList_format_errorDescription_(dataObject, NSPropertyListXMLFormat_v1_0, None)
+    if error:
+        raise NSPropertyListSerializationException(error)
+    else:
+        if plistData.writeToFile_atomically_(filepath, True):
+            return
+        else:
+            raise Exception("Failed to write plist data to %s" % filepath)
 
 				
 def getCurrentUser():
