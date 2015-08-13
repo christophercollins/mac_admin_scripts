@@ -44,7 +44,7 @@ com.apple.Localization
 com.apple.preference.security
 com.apple.preference.spotlight
 com.apple.preference.notifications
-				
+
 Hardware:
 com.apple.preference.digihub.discs
 com.apple.preference.displays
@@ -57,7 +57,7 @@ com.apple.preference.sound
 com.apple.preference.ink
 com.apple.preference.hardware
 com.apple.prefpanel.fibrechannel
-				
+
 Networking:
 com.apple.preferences.icloud
 com.apple.preferences.internetaccounts
@@ -66,8 +66,8 @@ com.apple.preference.internet
 com.apple.preference.network
 com.apple.preferences.Bluetooth
 com.apple.preferences.sharing
-				
-System:			
+
+System:
 com.apple.preferences.users
 com.apple.preferences.parentalcontrols
 com.apple.preferences.appstore
@@ -112,7 +112,7 @@ def readPlist(filepath):
 	else:
 		return dataObject
 
-		
+
 def writePlist(dataObject, filepath):
     '''
     Write 'rootObject' as a plist to filepath.
@@ -126,13 +126,13 @@ def writePlist(dataObject, filepath):
         else:
             raise Exception("Failed to write plist data to %s" % filepath)
 
-				
+
 def getCurrentUser():
 	currentuser = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]
 	currentuser = [currentuser,""][currentuser in [u"loginwindow", None, u""]]
 	return currentuser
 
-				
+
 def systemPreferencesPlistExists(currentuser):
 	'''
 	Check that com.apple.systempreferences.plist exists for the currently logged in user,
@@ -144,8 +144,8 @@ def systemPreferencesPlistExists(currentuser):
 	else:
 		print "User {} doesn't have a plist.".format(currentuser)
 		sys.exit()
-	
-	
+
+
 def hidePreferencePanes(plist, preferencepanes):
 	'''
 	Add desired preference panes defined in global PREFERENCE_PANES list
@@ -168,8 +168,8 @@ def hidePreferencePanes(plist, preferencepanes):
 			else:
 				print "Preference pane {} already hidden".format(pref)
 		return plist
-		
-	
+
+
 def fixPreferenceFilePermissions(filepath, currentuser):
 	'''
 	Set permissions on com.apple.systempreferences.plist file since script
@@ -191,7 +191,7 @@ def main():
 	# Write the final modified plist
 	writePlist(final_plist, systempreferencesplist)
 	fixPreferenceFilePermissions(systempreferencesplist, currentuser)
-	
+
 
 if __name__ == "__main__":
 	main()
