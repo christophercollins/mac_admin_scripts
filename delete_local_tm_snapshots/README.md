@@ -1,0 +1,1 @@
+Simple script to delete any local Time Machine local snapshots if you can't turn off Time Machine for some reason.
