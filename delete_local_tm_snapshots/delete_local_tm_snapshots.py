@@ -24,26 +24,30 @@
 
 import subprocess
 
+
 def get_local_snapshots():
-    cmd = ['tmutil', 'listlocalsnapshots', '/']
+    cmd = ["tmutil", "listlocalsnapshots", "/"]
     result = subprocess.check_output(cmd)
-    return [ x.split('com.apple.TimeMachine.')[1] for x in result.splitlines() ]
+    return [x.split("com.apple.TimeMachine.")[1] for x in result.splitlines()]
+
 
 def delete_local_snapshots(snapshots):
     if snapshots:
         length = len(snapshots)
         count = 1
         for snapshot in snapshots:
-            cmd = ['tmutil', 'deletelocalsnapshots', snapshot]
+            cmd = ["tmutil", "deletelocalsnapshots", snapshot]
             print("Deleting local snapshot {} ({}/{})".format(snapshot, count, length))
             count += 1
             subprocess.call(cmd)
     else:
         print("No snapshots to delete.")
 
+
 def main():
     snapshots = get_local_snapshots()
     delete_local_snapshots(snapshots)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
